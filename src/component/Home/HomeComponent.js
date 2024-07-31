@@ -1,35 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
-import GroupNote from '../GroupNote/GroupNote';
+import CreateNotes from '../CreateNotes/CreateNotes';
 import Styles from './HomeComponent.module.css';
-import CreateGroup from '../CreateGroup/CreateGroup';
-import { MainviewComponent } from '../Mainview/MainviewComponent';
+import CreateGroupPopup from '../CreateGroupPopup/CreateGroupPopup';
+import { NotesPanel } from '../NotesPanel/NotesPanel';
 import {toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createGroup as createGroupApi, createNote, getAllGroup, getNotesById } from '../../services/apis';
 const HomeComponent = () => {
-  const [notes, setnotes] = useState();
+  const [groupList, setGroupList] = useState();
   const [selectedGroup, setSelectedGroup] = useState(null)
-  const [selectedNote, setSelectedNote] = useState("")
+  const [selectedNotes, setSelectedNotes] = useState("")
   const [createGroup, setCreateGroup] = useState(false)
   const [isMobileView,setIsMobileView]=useState(true);
   const getData = async () => { 
-    // let notes = await localStorage.getItem("notes")
-    let notes = await getAllGroup();
-    console.log(notes);
-    if (notes&& notes?.groupsList) {
-      //let data = JSON.parse(notes)
-      setnotes(notes.groupsList)
+    let allGroups = await getAllGroup();    
+    if (allGroups&& allGroups?.groupsList) {      
+      setGroupList(allGroups.groupsList)
     }
   }
   useEffect(() => {
     getData();
   }, [])
 
-  const selectGroup = async (groupId,group,color) => {
+  const handleSelectedGroup = async (groupId,group,color) => {
     const res=await getNotesById(groupId);
     console.log(res)  
-    setSelectedNote(res?.notes)
+    setSelectedNotes(res?.notes)
     setSelectedGroup({groupId,group,color});
     if(window.innerWidth<=480){
       setIsMobileView(false);
@@ -49,7 +46,7 @@ const HomeComponent = () => {
          if(res && res?.success){
           const result = await getAllGroup();
           if(result && result?.success){
-            setnotes(result.groupsList)
+            setGroupList(result.groupsList)
           }
          }        
           }
@@ -57,26 +54,23 @@ const HomeComponent = () => {
   const addnewNote=async(note)=>{    
       const res=await createNote({notes:note, groupId:selectedGroup?.groupId});
       if(res && res?.success){
-        const res=await getNotesById(selectedGroup?.groupId);
-      
-        setSelectedNote(res?.notes)
+        const res=await getNotesById(selectedGroup?.groupId);      
+        setSelectedNotes(res?.notes)
         
-      }
-       //setnotes(allGroups);
-           
+      }          
   }
 
   return <div>    
     <div className={Styles.pocket_notes}>
-      {isMobileView&&<Sidebar notes={notes} selectGroup={selectGroup} selectedGroup={selectedGroup} addGroup={openDialog} />}
+      {isMobileView&&<Sidebar groupList={groupList} handleSelectedGroup={handleSelectedGroup} selectedGroup={selectedGroup} addGroup={openDialog} />}
       
-      { selectedGroup?(<GroupNote addnewNote ={addnewNote} setIsMobileView={setIsMobileView} setSelectedGroup={setSelectedGroup} selectedNote={selectedNote} selectedGroup={selectedGroup}/>):
-      (<MainviewComponent/>)}
+      { selectedGroup?(<CreateNotes addnewNote ={addnewNote} setIsMobileView={setIsMobileView} setSelectedGroup={setSelectedGroup} selectedNotes={selectedNotes} selectedGroup={selectedGroup}/>):
+      (<NotesPanel/>)}
 
     </div>
     <div className={Styles.create_group}>
       {
-        createGroup && <CreateGroup onClose={closeDialog} createGroup={createGroupfun}/>
+        createGroup && <CreateGroupPopup onClose={closeDialog} createGroup={createGroupfun}/>
       }
     </div>    
   </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Styles from './NotesCard.module.css';
+import Styles from './NoteCard.module.css';
 
 const NotesCard = ({notes}) => {
   return <div className={Styles.note_card}>

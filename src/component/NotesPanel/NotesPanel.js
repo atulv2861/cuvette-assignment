@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from '../../assets/images/mainView.png';
-import Styles from './Mainview.module.css';
+import Styles from './NotesPanel.module.css';
 import lockIcon from '../../assets/icons/lock.png';
 
-export const MainviewComponent = () => {
+export const NotesPanel = () => {
 
     return (
         <div className={Styles.mainview}>

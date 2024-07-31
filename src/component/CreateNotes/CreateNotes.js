@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import NotesCard from '../NotesCard/NotesCard';
-import Styles from './GroupNotes.module.css';
+import NotesCard from '../NoteCard/NoteCard';
+import Styles from './CreateNotes.module.css';
 import sendBtn from '../../assets/icons/Vector.png';
 import leftArrow from '../../assets/icons/left-arrow.png';
 

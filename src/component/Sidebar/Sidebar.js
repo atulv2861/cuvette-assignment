@@ -1,13 +1,13 @@
 import React from 'react'
-import GroupCard from '../GroupCard/GroupCard'
+import GroupCard from '../GroupList/GroupList'
 import Styles from './Sidebar.module.css';
 
-const Sidebar = ({notes,selectGroup,selectedGroup,addGroup}) => {
+const Sidebar = ({groupList,handleSelectedGroup,selectedGroup,addGroup}) => {
   return <div className={Styles.left_section}>
      <h1>Pocket Notes</h1>
      <div className={Styles.groupList}>
         {
-        notes && notes.map(group=><GroupCard className={Styles.group} selectedGroup={selectedGroup} color={group?.color} group={group?.name} selectGroup={selectGroup} groupId={group?._id}/>)
+        groupList && groupList.map(group=><GroupCard className={Styles.group} selectedGroup={selectedGroup} color={group?.color} group={group?.name} handleSelectedGroup={handleSelectedGroup} groupId={group?._id}/>)
         }
      </div>
      <div className={Styles.addnote_btn} onClick={addGroup}>

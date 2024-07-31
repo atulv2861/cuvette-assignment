@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Styles from "./GroupCard.module.css";
+import Styles from "./GroupList.module.css";
 const GroupCard = ({ color,group,groupId, selectedGroup, selectGroup }) => {
   // const [isSelectedGrp,setIsSelectedGrp]=useState();
   let notesName = group.split(" ");

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Styles from './CreateGroup.module.css';
+import Styles from './CreateGroupPopup.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
