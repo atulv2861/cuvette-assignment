@@ -1,0 +1,15 @@
+.mainview{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    
+  
+}
+
+@media screen and (max-width: 480px) {
+    .mainview{
+    display: none;
+    }
+    }
