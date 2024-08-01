@@ -9,10 +9,9 @@ const createNote = async (req, res) => {
     await Notes.create(req.body);
     res.status(201).json({
       success: true,
-      message: "Note created!!!!",
+      message: "Note is created!",
     });
-  } catch (error) {
-    console.log(error);
+  } catch (error) {   
     res.status(500).json({
       success: false,
       message: error.message,
@@ -25,14 +24,20 @@ const getNotesByGroupId = async (req, res) => {
     if (!groupId) {
       return res.status(400).json({
         success: false,
-        message: "Please provide a valid group id",
+        message: "Please provide the group id!",
       });
     }
 
     const notes = await Notes.find({ groupId: groupId });
+    if(!notes){
+      return res.status(404).json({
+        success: false,
+        message: "Notes not found!",
+      });
+    }
     res.status(201).json({
       success: true,
-      message: "All notes!!!!",
+      message: "Get all notes!",
       notes,
     });
   } catch (error) {

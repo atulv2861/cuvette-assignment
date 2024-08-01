@@ -1,8 +1,7 @@
-import './App.css';
-import { HomePage } from './Pages/HomePage/HomePage';
 
+import HomeComponent from './component/Home/HomeComponent';
 function App() {
-  return(<HomePage/>)    
+  return(<HomeComponent/>)    
 }
 
 export default App;

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Styles from "./GroupList.module.css";
-const GroupCard = ({ color,group,groupId, selectedGroup, selectGroup }) => {
-  // const [isSelectedGrp,setIsSelectedGrp]=useState();
+const GroupList = ({selectedGroup, color, group, handleSelectedGroup, groupId }) => {
   let notesName = group.split(" ");
   let notesSymbol = "";  
   let notesNameLength = notesName.length;
@@ -20,8 +19,7 @@ const GroupCard = ({ color,group,groupId, selectedGroup, selectGroup }) => {
   notesSymbol = notesSymbol.toUpperCase(); 
  
   const handleSelectGroup=(groupId,group,color)=>{
-      selectGroup(groupId,group,color);      
-      //setIsSelectedGrp(groupId);
+    handleSelectedGroup(groupId,group,color);  
   };
 
   return <div 
@@ -34,4 +32,4 @@ const GroupCard = ({ color,group,groupId, selectedGroup, selectGroup }) => {
   </div>
 }
 
-export default GroupCard
+export default GroupList

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import NotesCard from '../NoteCard/NoteCard';
+import NotesCard from '../NotesCard/NotesCard';
 import Styles from './CreateNotes.module.css';
 import sendBtn from '../../assets/icons/Vector.png';
 import leftArrow from '../../assets/icons/left-arrow.png';
 
-const GroupNote = ({ selectedNote, selectedGroup, addnewNote,setIsMobileView,setSelectedGroup }) => {
+const CreateNotes = ({ selectedNotes, selectedGroup, handleAddNewNote,setIsMobileView,setSelectedGroup }) => {
     const [newNote, setNewNotes] = useState(null)
     let notesName = selectedGroup?.group?.split(" ");
     let notesSymbol = "";
@@ -23,7 +23,7 @@ const GroupNote = ({ selectedNote, selectedGroup, addnewNote,setIsMobileView,set
     }
     notesSymbol = notesSymbol.toUpperCase();
     const handleAddNotes=()=>{
-        addnewNote(newNote); 
+        handleAddNewNote(newNote); 
         setNewNotes("") ;
     };
 
@@ -42,17 +42,17 @@ const GroupNote = ({ selectedNote, selectedGroup, addnewNote,setIsMobileView,set
         </header>
         <div className={Styles.notes_wrapper}>
             {
-                selectedNote && selectedNote?.map(notes => <NotesCard notes={notes} />)
+                selectedNotes && selectedNotes?.map((notes,indx) => <NotesCard notes={notes} key={indx}/>)
             }
 
         </div>
         <div className={Styles.create_note}>
           
            <textarea type='text' style={{padding:"5px 60px 5px 5px"}} value={newNote} onChange={(e) => setNewNotes(e.target.value)} max={300} placeholder='Enter your text here.....'/><br />
-            <button disabled={!newNote?true:false}  style={{cursor:'pointer'}}onClick={() => handleAddNotes() }><img src={sendBtn}/></button>
+            <button disabled={!newNote?true:false}  style={{cursor:'pointer'}} onClick={() => handleAddNotes() }><img src={sendBtn}/></button>
           
         </div>
     </div>
 }
 
-export default GroupNote
+export default CreateNotes;

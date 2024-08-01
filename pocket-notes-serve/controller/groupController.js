@@ -3,7 +3,14 @@ const Group = require('../model/groupSchema')
 const createGroup = async (req, res) => {
     try {
         const { name, color } = req.body;       
-        await Group.create({name, color});
+        const result=await Group.create({name, color});
+
+        if(!result){
+            return res.status(400).json({
+                success: false,                   
+                message:"Something went wrong!"            
+            });
+        }
         res.status(201).json({
             success: true,                   
             message:"Group created successfully!"            
@@ -17,11 +24,17 @@ const createGroup = async (req, res) => {
 }
 const allGroup = async(req,res)=>{
  try {
-    const groupsList = await Group.find().select("-updatedAt")
+    const groupList = await Group.find().select("-updatedAt");
+    if(!groupList){
+        return res.status(400).json({
+            success:false,
+            message:"Something went wrong!",
+        });
+    }
     res.status(200).json({
         success:true,
         message:"Groups List!",
-        groupsList
+        groupList
     })
  } catch (error) {
     console.log(error)

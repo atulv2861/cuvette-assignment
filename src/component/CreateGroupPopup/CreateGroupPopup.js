@@ -3,7 +3,7 @@ import Styles from './CreateGroupPopup.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const CreateGroup = ({createGroup, onClose }) => {
+const CreateGroupPopup = ({handleCreateGroup, onClose }) => {
   const [text, setText] = useState("");
   const [color, setColor] = useState("");
   const dialogRef = useRef(null);
@@ -23,7 +23,7 @@ const CreateGroup = ({createGroup, onClose }) => {
       toast('Please choose anyone color!')
     }
     if(isValid){
-      createGroup(data);
+      handleCreateGroup(data);
       onClose();
     }
     
@@ -44,7 +44,7 @@ const CreateGroup = ({createGroup, onClose }) => {
 
   return <div className={`${Styles.popup} "popup"`} ref={dialogRef}>    
       <h3 style={{marginTop:'-10px'}}>Create new group</h3>    
-       <label for="groupname">Group Name&nbsp;&nbsp;&nbsp;</label>
+       <label htmlFor="groupname">Group Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
        <input
         type='text' 
         id="groupname"
@@ -56,7 +56,7 @@ const CreateGroup = ({createGroup, onClose }) => {
          max={15}
          placeholder='Enter group name'/><br/>
         <div className={Styles.color_group}>
-        <label for="favcolor">Choose Color&nbsp;&nbsp;&nbsp;</label>
+        <label htmlFor="favcolor">Choose Color&nbsp;&nbsp;&nbsp;</label>
       
         <div className={`${Styles.color} ${color=='#4edd27'&&Styles.selectedColor}`} style={{backgroundColor:'#4edd27'}} onClick={()=>setColor('#4edd27')}></div>
         <div className={`${Styles.color} ${color=='#FFA500'&&Styles.selectedColor}`} style={{backgroundColor:'#FFA500'}} onClick={()=>setColor('#FFA500')}></div>
@@ -70,4 +70,4 @@ const CreateGroup = ({createGroup, onClose }) => {
   </div >
 }
 
-export default CreateGroup
+export default CreateGroupPopup

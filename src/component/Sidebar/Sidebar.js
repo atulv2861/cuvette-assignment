@@ -1,16 +1,23 @@
 import React from 'react'
-import GroupCard from '../GroupList/GroupList'
+import GroupList from '../GroupList/GroupList'
 import Styles from './Sidebar.module.css';
 
-const Sidebar = ({groupList,handleSelectedGroup,selectedGroup,addGroup}) => {
+const Sidebar = ({groupList,handleSelectedGroup,selectedGroup,onOpen}) => {   
   return <div className={Styles.left_section}>
      <h1>Pocket Notes</h1>
      <div className={Styles.groupList}>
         {
-        groupList && groupList.map(group=><GroupCard className={Styles.group} selectedGroup={selectedGroup} color={group?.color} group={group?.name} handleSelectedGroup={handleSelectedGroup} groupId={group?._id}/>)
+        groupList && groupList.map((group,indx)=><GroupList 
+         className={Styles.group} 
+         key={indx}
+         selectedGroup={selectedGroup} 
+         color={group?.color} 
+         group={group?.name} 
+         handleSelectedGroup={handleSelectedGroup} 
+         groupId={group?._id}/>)
         }
      </div>
-     <div className={Styles.addnote_btn} onClick={addGroup}>
+     <div className={Styles.addnote_btn} onClick={onOpen}>
      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#5207df" d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
      </div>
      
