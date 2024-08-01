@@ -3,8 +3,26 @@
     max-height: 80vh;   
     overflow-x:hidden;
     overflow-y: auto;
-
 }
+
+.groupList::-webkit-scrollbar {
+    width: 10px;
+}
+
+.groupList::-webkit-scrollbar-track {
+    background: #EEF2F5;
+    border-radius: 8px;
+}
+
+.groupList::-webkit-scrollbar-thumb {
+    background: #e0dede;
+    border-radius: 8px;
+}
+
+.groupList::-webkit-scrollbar-thumb:hover {
+    background: #e0dede;
+}
+
 .left_section{
     height: 100vh;
     padding: 2vmax;

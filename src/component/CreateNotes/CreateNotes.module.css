@@ -75,6 +75,24 @@
     overflow-y: auto;
 }
 
+.notes_wrapper::-webkit-scrollbar {
+    width: 10px;
+}
+
+.notes_wrapper::-webkit-scrollbar-track {
+    background: #EEF2F5;
+    border-radius: 8px;
+}
+
+.notes_wrapper::-webkit-scrollbar-thumb {
+    background: #e0dede;
+    border-radius: 8px;
+}
+
+.notes_wrapper::-webkit-scrollbar-thumb:hover {
+    background: #e0dede;
+}
+
 @media screen and (max-width :480px){
     .create_note>textarea{       
         width: 90vw;
