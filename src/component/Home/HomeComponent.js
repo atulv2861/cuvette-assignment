@@ -43,7 +43,7 @@ const HomeComponent = () => {
   const handleCreateGroup=async(data)=>{
          const res=await createGroupApi(data)
          if(res && res?.success){
-          toast('Group is created successfully!');
+          //toast('Group is created successfully!');
           const result = await getAllGroup();
           if(result && result?.success){
             setGroupList(result?.groupList)
@@ -54,7 +54,7 @@ const HomeComponent = () => {
   const handleAddNewNote=async(note)=>{    
       const res=await createNote({notes:note, groupId:selectedGroup?.groupId});
       if(res && res?.success){
-        toast('Notes is created successfully!');
+        //toast('Notes is created successfully!');
         const res=await getNotesById(selectedGroup?.groupId);      
         setSelectedNotes(res?.notes);        
       }          
